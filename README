@@ -1,0 +1,9 @@
+System info
+===========
+
+This is a minimal kernel configuration for Firecracker VMs. Build with
+
+  make vmlinux
+  strip vmlinux
+
+as we need an ELF executable rather than a bootable compressed image.
