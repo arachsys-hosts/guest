@@ -1,23 +1,12 @@
 System info
 ===========
 
-This is a minimal kernel configuration for Firecracker VMs. Compile the
-amd64 kernel with
+This is a minimal kernel configuration for Cloud Hypervisor VMs.
 
-  cp config linux-amd64/.config
-  make -C linux-amd64 olddefconfig bzImage
-  cp linux-amd64/arch/x86/boot/compressed/vmlinux.bin boot/linux-amd64
+Compile the compressed amd64 kernel with
 
-as we need an ELF executable boot/linux rather than a compressed image.
+  cp config linux/.config
+  make -C linux olddefconfig bzImage
+  cp linux/arch/x86/boot/bzImage boot/linux
 
-The build process for arm64 is more standard: compile the kernel with
-
-  cp config linux-arm64/.config
-  make -C linux-arm64 olddefconfig Image ARCH=arm64
-  cp linux-arm64/arch/arm64/boot/Image boot/linux-arm64
-
-An example configuration is in guest.json: run with
-
-  firecracker --no-api --config-file guest.json
-
-to use the kernel 'linux' and rootfs 'rootfs' in the working directory.
+This can be used directly with the hyper --kernel option.
