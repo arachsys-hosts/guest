@@ -1,0 +1,13 @@
+#!/bin/bash
+
+trap 'exec "$0" "$@"' HUP
+enable -f /lib/bash/sleep sleep
+sleep $((86400 - EPOCHSECONDS % 86400))
+
+for DIR in /home/*; do
+  if [[ -x $DIR/backup ]]; then
+    su -s $DIR/backup ${DIR##*/}
+  fi
+done
+
+exec "$0" "$@"

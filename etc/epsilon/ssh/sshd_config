@@ -1,0 +1,11 @@
+PermitRootLogin yes
+PermitUserEnvironment yes
+Subsystem sftp /lib/openssh/sftp-server
+
+Match User !root,* Group !sftp,*
+  ForceCommand /bin/userbind --ssh
+
+Match Group sftp
+  ChrootDirectory safe:%h
+  DisableForwarding yes
+  ForceCommand internal-sftp -P symlink
