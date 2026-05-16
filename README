@@ -9,4 +9,4 @@ Compile the compressed amd64 kernel with
   make -C linux olddefconfig bzImage
   cp linux/arch/x86/boot/bzImage boot/linux
 
-This can be used directly with the hyper --kernel option.
+This can be used directly with the hypervisor --kernel option.
